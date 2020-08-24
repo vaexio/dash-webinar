@@ -1,0 +1,11 @@
+--extra-index-url=https://dash-enterprise.vaex.io/Docs/packages
+dash-design-kit==1.5.4
+dash==1.14.0
+gunicorn==19.9.0
+jupyter-dash==0.3.1
+vaex-core>=2.0.3,<3
+vaex-hdf5>=0.6.0,<0.7.0
+plotly>=4.7.0,<5
+ipywidgets==7.5.1
+flask-caching>=1.8.0,<2
+xarray==0.16.0
