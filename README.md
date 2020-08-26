@@ -1,6 +1,7 @@
 # dash-webinar
 A Dash app powerd by Vaex - Plotly webinar August 2020
 
+See also the more full fledged example https://github.com/vaexio/dash-120million-taxi-app which is live at https://dash.vaex.io
 
 # Try out this project in Dash Enterprise workspace
 
