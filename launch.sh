@@ -12,7 +12,7 @@ jupyter nbconvert --TagRemovePreprocessor.remove_cell_tags="('skip-app',)"  --to
 # is persistent (setup Directory Mappings in Dash Enterprise)
 # But Dash Enterprise cannot map inside /app
 # The solution is to map to /vaex-file-cache and link these directories
-if [ -d /vaex-file-cache ]; then
+if [ -d /vaex-file-cache ] && [ ! -d /app/.vaex/file-cache ]; then
     mkdir -p /app/.vaex
     ln -s /vaex-file-cache /app/.vaex/file-cache
 fi
