@@ -4,7 +4,8 @@
 NAME=app
 
 # Convert notebook to py script
-jupyter nbconvert --to script $NAME.ipynb
+# We skip all cells tagged 'skip-app' to speed up startup time
+jupyter nbconvert --TagRemovePreprocessor.remove_cell_tags="('skip-app',)"  --to script $NAME.ipynb
 
 # make sure the files exists (otherwise all workers try to create it at the same time)
 python -c "import vaex; df = vaex.open('s3://vaex/taxi/yellow_taxi_2009_2015_f32_app.hdf5?anon=true')"
