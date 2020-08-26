@@ -13,8 +13,10 @@ jupyter nbconvert --TagRemovePreprocessor.remove_cell_tags="('skip-app',)"  --to
 # e.g. map /data/vaex-file-cache/ to /root/.vaex
 # But inside dokku, $HOME points to /app (which Dash Enterprise cannot map)
 # The solution is to link these directories
-ln -s /root/.vaex /app/.vaex
-
+if [ -f /root/.vaex/file-cache ]; then
+    mkdir -p /app/.vaex
+    ln -s /root/.vaex/file-cache /app/.vaex/file-cache
+fi
 
 # Make sure the files exists (otherwise all workers try to create it at the same time)
 python ./prefetch.py
