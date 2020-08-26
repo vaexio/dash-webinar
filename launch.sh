@@ -8,13 +8,14 @@ NAME=app
 jupyter nbconvert --TagRemovePreprocessor.remove_cell_tags="('skip-app',)"  --to script $NAME.ipynb
 
 
-# To avoid having to fetch the data each time, make sure the /root/.vaex/file-cache directory
+# To avoid having to fetch the data each time, make sure the /app/.vaex/file-cache directory
 # is persistent (setup Directory Mappings in Dash Enterprise)
-# e.g. map /data/vaex-file-cache/ to /root/.vaex
-# But inside dokku, $HOME points to /app (which Dash Enterprise cannot map)
-# The solution is to link these directories
-mkdir -p /app/.vaex
-ln -s /root/.vaex/file-cache /app/.vaex/file-cache
+# But Dash Enterprise cannot map inside /app
+# The solution is to map to /vaex-file-cache and link these directories
+if [ -d /vaex-file-cache ]; then
+    mkdir -p /app/.vaex
+    ln -s /vaex-file-cache /app/.vaex/file-cache
+fi
 
 # Make sure the files exists (otherwise all workers try to create it at the same time)
 python ./prefetch.py
