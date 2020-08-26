@@ -17,4 +17,4 @@ if [ -f $NAME.txt ]; then
 fi
 
 # Serve app
-gunicorn app:server --workers 8
+gunicorn app:server --workers 4 -t 240
